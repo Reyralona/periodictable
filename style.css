@@ -4,11 +4,15 @@
 }
 
 :root{
+
+    /* Layout */
     --elementsize: 120px;
     --elementpadding: 10px;
     --elementfont: monospace;
     --elementfontsize: 21px;
 
+
+    /* Colors */
     --diatomic_nonmetal_light: rgb(125, 167, 216);
     --diatomic_nonmetal_dark: rgb(2, 55, 116);
 }
