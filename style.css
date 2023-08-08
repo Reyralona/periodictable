@@ -1,0 +1,72 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --elementsize: 120px;
+    --elementpadding: 10px;
+    --elementfont: monospace;
+    --elementfontsize: 21px;
+
+    --diatomic_nonmetal_light: rgb(125, 167, 216);
+    --diatomic_nonmetal_dark: rgb(2, 55, 116);
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #353535;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center{
+    justify-content: center;
+    align-items: center;
+}
+
+.element{
+    padding: var(--elementpadding);
+    width: calc((var(--elementsize) - var(--elementpadding)));
+    height: calc((var(--elementsize) - var(--elementpadding)));
+    font-family: var(--elementfont);
+    font-size: var(--elementfontsize);
+    border-radius: 5px;
+    justify-content: space-around;
+    box-shadow: 5px 5px 10px rgb(27, 27, 27);
+    transition: transform 0.2s ease-in-out;
+}
+
+.element > .element_info{
+    width: 100%;
+    justify-content: space-between;
+}
+
+.element > .symbol{
+    font-size: calc(var(--elementfontsize) * 3)
+}
+
+.element *{
+    gap: 10px;
+}
+
+.element:hover{
+    transform: scale(1.2);
+}
+
+.diatomic_nonmetal{
+    background: linear-gradient(var(--diatomic_nonmetal_light), var(--diatomic_nonmetal_dark));
+}
