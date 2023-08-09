@@ -1,48 +1,91 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
 
-:root{
+:root {
 
     /* Layout */
     --elementsize: 120px;
     --elementpadding: 10px;
     --elementfont: monospace;
-    --elementfontsize: 21px;
+    --elementfontsize: 16px;
+    --elementgap: 12px;
 
 
     /* Colors */
-    --diatomic_nonmetal_light: rgb(125, 167, 216);
-    --diatomic_nonmetal_dark: rgb(2, 55, 116);
+    --reactive_nonmetal_light: rgb(125, 167, 216);
+    --reactive_nonmetal_dark: rgb(2, 55, 116);
+
+    --noble_gas_light: rgb(167, 86, 86);
+    --noble_gas_dark: rgb(86, 0, 0);
+
+    --alkali_metal_light: rgb(111, 194, 113);
+    --alkali_metal_dark: rgb(2, 102, 0);
+
+    --transition_metal_light: rgb(186, 108, 210);
+    --transition_metal_dark: rgb(79, 0, 103);
+
+    --lanthanide_light: rgb(77, 94, 255);
+    --lanthanide_dark: rgb(0, 0, 210);
+
+    --actinide_light: rgb(108, 69, 29);
+    --actinide_dark: rgb(63, 31, 0);
+
+    --metalloid_light: rgb(166, 121, 57);
+    --metalloid_dark: rgb(80, 47, 0);
+
+    --post-transition_metal_light: rgb(92, 170, 135);
+    --post-transition_metal_dark: rgb(0, 90, 49);
+
+    --alkaline_earth_metal_light: rgb(251, 102, 102);
+    --alkaline_earth_metal_dark: rgb(150, 0, 0);
+
 }
 
-body{
+
+body {
     width: 100vw;
     height: 100vh;
     background-color: #353535;
     color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
 }
 
-.flex-row{
+.table{
+    animation: fade 1s ease-in-out;
+    gap: var(--elementsize);
+}
+
+.flex-row {
     display: flex;
     flex-direction: row;
 }
 
-.flex-col{
+.flex-col {
     display: flex;
     flex-direction: column;
 }
 
-.flex-center{
+.flex-center {
     justify-content: center;
     align-items: center;
 }
 
-.element{
+.flex-end{
+    justify-content: end;
+}
+.align-end{
+    align-items: end;
+}
+
+.up{
+    gap: var(--elementsize);
+}
+
+.element {
     padding: var(--elementpadding);
     width: calc((var(--elementsize) - var(--elementpadding)));
     height: calc((var(--elementsize) - var(--elementpadding)));
@@ -51,26 +94,78 @@ body{
     border-radius: 5px;
     justify-content: space-around;
     box-shadow: 5px 5px 10px rgb(27, 27, 27);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.1s ease;
 }
 
-.element > .element_info{
+.elementgroup{
+    gap: var(--elementgap);
+}
+.elementrow{
+    gap: var(--elementgap);
+}
+
+.element>.element_info {
     width: 100%;
     justify-content: space-between;
 }
 
-.element > .symbol{
+.element>.symbol {
     font-size: calc(var(--elementfontsize) * 3)
 }
 
-.element *{
+.element * {
     gap: 10px;
 }
 
-.element:hover{
-    transform: scale(1.2);
+.element:hover {
+    transform: scale(1.3);
 }
 
-.diatomic_nonmetal{
-    background: linear-gradient(var(--diatomic_nonmetal_light), var(--diatomic_nonmetal_dark));
+.polyatomic_nonmetal {
+    background: linear-gradient(var(--reactive_nonmetal_light), var(--reactive_nonmetal_dark));
+}
+
+.alkaline_earth_metal {
+    background: linear-gradient(var(--alkaline_earth_metal_light), var(--alkaline_earth_metal_dark));
+}
+
+.diatomic_nonmetal {
+    background: linear-gradient(var(--reactive_nonmetal_light), var(--reactive_nonmetal_dark));
+}
+
+.noble_gas {
+    background: linear-gradient(var(--noble_gas_light), var(--noble_gas_dark))
+}
+
+.alkali_metal {
+    background: linear-gradient(var(--alkali_metal_light), var(--alkali_metal_dark));
+}
+
+.transition_metal {
+    background: linear-gradient(var(--transition_metal_light), var(--transition_metal_dark));
+}
+
+.lanthanide {
+    background: linear-gradient(var(--lanthanide_light), var(--lanthanide_dark));
+}
+
+.actinide {
+    background: linear-gradient(var(--actinide_light), var(--actinide_dark))
+}
+
+.metalloid {
+    background: linear-gradient(var(--metalloid_light), var(--metalloid_dark))
+}
+
+.post-transition_metal {
+    background: linear-gradient(var(--post-transition_metal_light), var(--post-transition_metal_dark));
+}
+
+@keyframes fade{
+    from { 
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
 }

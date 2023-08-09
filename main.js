@@ -13,7 +13,8 @@ function findElementByName(array, key, value) {
     });
 };
 
-function createElementDiv(element) {
+function createElementDiv(element, target) {
+
     let elObj = findElementByName(data.elements, 'name', element)
     let ele = elObj[0]
     let atomicnumber = ele.number
@@ -22,20 +23,39 @@ function createElementDiv(element) {
     let name = ele.name
     let category = ele.category.replace(/ /g, "_")
 
+
+    //if category is unknown
+    if(category.search("unknown") !== -1){
+        category = "unknown"
+    }
+
+    //if atomic mass is too big
+    if (String(atomicmass).length >= 7) {
+        atomicmass = Number(atomicmass).toFixed(2)
+    }
+
     let eleDiv = `
-    <div id=${name} class="${category} element flex-col flex-center">
+    <div class="${category} element flex-col flex-center">
     <div class="flex-row element_info">
         <div class="atomicnumber">${atomicnumber}</div>
-        <div class="atomicmass">${atomicmass}</div>
+        <div class="atomicmass">${atomicmass}u</div>
     </div>
     <div class="symbol">${symbol}</div>
     <div class="name">${name}</div>
     </div>
-    `
-    console.log(eleDiv)
-    periodicTable.insertAdjacentHTML("beforeend", eleDiv)
+    ` 
+
+    target.insertAdjacentHTML("beforeend", eleDiv)
 }
 
-createElementDiv("Nitrogen")
+// scan for elements
 
+const elements = document.getElementsByTagName("element")
+
+for(let i = 0; i < elements.length; i++){
+    let name = elements[i].id
+    let target = elements[i].parentElement
+    createElementDiv(name, target)
+    
+}
 
