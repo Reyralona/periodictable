@@ -14,6 +14,13 @@
     --tablegap: 40px;
     --scaleFactor: 2;
 
+    /* Card Layout */
+    --cardwidth: 600px;
+    --cardheight: 500px;
+    --cardpadding: 20px;
+    --cardfontsize: 28px;
+    --cardiconsize: 35px;
+
 
     /* Colors */
     --reactive_nonmetal_light: rgb(125, 167, 216);
@@ -62,6 +69,48 @@ body {
 .table {
     animation: fade 1s ease-in-out;
     gap: var(--tablegap);
+    position: relative;
+}
+
+.x-icon{
+    position: absolute;
+    left: calc(95% - var(--cardpadding));
+    width: var(--cardiconsize);
+    height: var(--cardiconsize);
+}
+.x-icon:hover{
+    cursor: pointer;
+}
+
+.card{
+    width: calc(var(--cardwidth) - var(--cardpadding));
+    height: fit-content;
+    /* min-height: calc(var(--cardheight) - var(--cardpadding)); */
+    padding: var(--cardpadding);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: var(--cardfontsize);
+    border-radius: 10px;
+}
+
+.card > div{
+    gap: 20px;
+}
+
+.grow{
+    animation: grow 1s ease forwards;
+}
+
+.unclickable{
+    pointer-events: none;
+}
+
+.shrink{
+    animation: shrink 1s ease forwards;
 }
 
 .flex-row {
@@ -189,5 +238,23 @@ body {
 
     to {
         opacity: 100%;
+    }
+}
+
+@keyframes grow {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes shrink {
+    from {
+
+    }
+    to {
+        transform: scale(0);
     }
 }
