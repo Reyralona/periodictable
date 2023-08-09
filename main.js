@@ -9,8 +9,8 @@ function capitalize(string) {
     }
 }
 
-function handleMissing(string){
-    if (string === null || string === "undefined" || string.search("unknown") !== -1){
+function handleMissing(string) {
+    if (String(string) === "null" || String(string) === "undefined" || String(string).search("unknown") !== -1) {
         return "unknown"
     }
     return string
@@ -58,55 +58,93 @@ function createElementDiv(element, target) {
 }
 
 function removeCard() {
-    let card = periodicTable.querySelector(".card")
-    card.classList.remove("grow")
-    card.classList.add("shrink")
-    setTimeout(() => {
-        periodicTable.removeChild(card)
-    }, 1000)
+    if (cardIsShowing()) {
+        let card = periodicTable.querySelector(".card")
+        card.classList.remove("grow")
+        card.classList.add("shrink")
+        setTimeout(() => {
+            periodicTable.removeChild(card)
+        }, 1000)
+    }
+
 }
 
 function getElementInfo(elementObj) {
+    
+    // if theres already a card
+    removeCard()
+
     let elementInfo = findElementByName(data.elements, 'name', elementObj.id)[0]
-
-
     let cardDiv = `
     <div class="card ${addUnderscores(handleMissing(elementInfo.category))} grow flex-col">
-        <img class="x-icon" src="x-icon.jpg"></nav>
+        <img class="x-icon" type="button" onclick="removeCard()" src="x-icon.jpg"></nav>
         <div class="flex-col">
-            <div>
-                <div>Name: ${elementInfo.name}</div>
-                <div>Atomic Number: ${elementInfo.number}</div>
-                <div>Discovered by: ${handleMissing(elementInfo.discovered_by)}</div>
-                <div>Named by: ${handleMissing(elementInfo.named_by)}</div>
-                <div>Appearance: ${capitalize(elementInfo.appearance)}</div>
-                <div>Atomic Mass: ${elementInfo.atomic_mass}u</div>
-                <div>Boiling point: ${elementInfo.boil}K</div>   
-                <div>Category: ${capitalize(elementInfo.category)}</div>
-                <div>Density: ${elementInfo.density} kg/m³</div>
-                <div>Melting point: ${elementInfo.melt}K</div>
-            </div>
-            <div>
-                <div>Summary: ${elementInfo.summary}</div>
-            </div>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td>${elementInfo.name}</td>
+                </tr>
+                <tr>
+                    <th>Atomic Number</th>
+                    <td>${elementInfo.number}</td>
+                </tr>
+                <tr>
+                    <th>Discovered by</th>
+                    <td>${capitalize(handleMissing(elementInfo.discovered_by))}</td>
+                </tr>
+                <tr>
+                    <th>Named by</th>
+                    <td> ${capitalize(handleMissing(elementInfo.named_by))}</td>
+                </tr>
+                <tr>
+                    <th>Appearance</th>
+                    <td>${capitalize(elementInfo.appearance)}</td>
+                </tr>
+                <tr>
+                    <th>Atomic Mass</th>
+                    <td>${handleMissing(elementInfo.atomic_mass)}u</td>
+                </tr>
+                <tr>
+                    <th>Boiling point</th>
+                    <td>${handleMissing(elementInfo.boil)}</td>
+                </tr>
+                <tr>
+                    <th>Category</th>
+                    <td>${capitalize(elementInfo.category)}</td>
+                </tr>
+                <tr>
+                    <th>Density</th>
+                    <td>${handleMissing(elementInfo.density)}</td>
+                </tr>
+                <tr>
+                    <th>Melting point</th>
+                    <td>${handleMissing(elementInfo.melt)}</td>
+                </tr>
+            </table>
+            <table>
+                <th style="text-align: center">Summary</th>
+                <tr>
+                    <td>${elementInfo.summary}</td>
+                </tr>     
+            </table>
         </div>
     </div>
     `
 
-    // if theres already a card
-    if (periodicTable.querySelector(".card") !== null) {
-        removeCard()
-    }
-
     periodicTable.classList.add("unclickable")
     periodicTable.insertAdjacentHTML("beforeend", cardDiv)
+
     setTimeout(() => {
         periodicTable.classList.remove("unclickable")
-    }, 1000)
-    document.querySelector(".x-icon").onclick = () => {
-        removeCard()
-    }
+    }, 500)
+}
 
+function cardIsShowing(){
+    return document.querySelector('.card') !== null
+}
+
+function clickedOn(el, e){
+    return document.querySelector(`${el}`).contains(e.target)
 }
 
 periodicTable = document.querySelector(".table")
@@ -135,12 +173,8 @@ for (let i = 0; i < elements.length; i++) {
 // remove card if clicked outside table 
 
 window.addEventListener('click', function (e) {
-    if (document.querySelector('.table').contains(e.target)) {
-        // Clicked in box
-    } else {
+    if (!clickedOn('.table', e)) {
         removeCard()
     }
 });
-
-
 

@@ -8,19 +8,18 @@
     /* Layout */
     --elementsize: 80px;
     --elementpadding: 8px;
-    --elementfont: Cambria;
-    --elementfontsize: 12px;
-    --elementgap: 4px;
+    --elementfont: consolas;
+    --elementfontsize: 11.5px;
+    --elementgap: 5px;
     --tablegap: 40px;
     --scaleFactor: 2;
 
     /* Card Layout */
-    --cardwidth: 600px;
+    --cardwidth: 500px;
     --cardheight: 500px;
-    --cardpadding: 20px;
-    --cardfontsize: 28px;
-    --cardiconsize: 35px;
-
+    --cardpadding: 15px;
+    --cardfontsize: 18px;
+    --cardiconsize: 15px;
 
     /* Colors */
     --reactive_nonmetal_light: rgb(125, 167, 216);
@@ -66,6 +65,21 @@ body {
     align-items: center;
 }
 
+table, th, td{
+    border: 1px solid white;
+    border-collapse: collapse;
+
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.26);
+    text-align: left;
+}
+
+td, th {
+    padding: 10px;
+}
+
 .table {
     animation: fade 1s ease-in-out;
     gap: var(--tablegap);
@@ -73,8 +87,7 @@ body {
 }
 
 .x-icon{
-    position: absolute;
-    left: calc(95% - var(--cardpadding));
+    align-self: end;
     width: var(--cardiconsize);
     height: var(--cardiconsize);
 }
@@ -83,6 +96,7 @@ body {
 }
 
 .card{
+    font-family: var(--elementfont);
     width: calc(var(--cardwidth) - var(--cardpadding));
     height: fit-content;
     /* min-height: calc(var(--cardheight) - var(--cardpadding)); */
@@ -95,6 +109,7 @@ body {
     margin: auto;
     font-size: var(--cardfontsize);
     border-radius: 10px;
+    gap: 10px;
 }
 
 .card > div{
@@ -102,7 +117,7 @@ body {
 }
 
 .grow{
-    animation: grow 1s ease forwards;
+    animation: grow 0.5s ease forwards;
 }
 
 .unclickable{
@@ -110,7 +125,7 @@ body {
 }
 
 .shrink{
-    animation: shrink 1s ease forwards;
+    animation: shrink 0.5s ease forwards;
 }
 
 .flex-row {
@@ -176,7 +191,7 @@ body {
 }
 
 .element>.symbol {
-    font-size: calc(var(--elementfontsize) * 3)
+    font-size: calc(var(--elementfontsize) * 3.5)
 }
 
 .element * {
