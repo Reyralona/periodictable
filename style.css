@@ -6,11 +6,12 @@
 :root {
 
     /* Layout */
-    --elementsize: 120px;
-    --elementpadding: 10px;
+    --elementsize: 50px;
+    --elementpadding: 8px;
     --elementfont: monospace;
-    --elementfontsize: 16px;
-    --elementgap: 12px;
+    --elementfontsize: 8px;
+    --elementgap: 2px;
+    --tablegap: 20px;
 
 
     /* Colors */
@@ -32,8 +33,8 @@
     --actinide_light: rgb(108, 69, 29);
     --actinide_dark: rgb(63, 31, 0);
 
-    --metalloid_light: rgb(166, 121, 57);
-    --metalloid_dark: rgb(80, 47, 0);
+    --metalloid_light: rgb(228, 191, 118);
+    --metalloid_dark: rgb(95, 66, 2);
 
     --post-transition_metal_light: rgb(92, 170, 135);
     --post-transition_metal_dark: rgb(0, 90, 49);
@@ -41,13 +42,16 @@
     --alkaline_earth_metal_light: rgb(251, 102, 102);
     --alkaline_earth_metal_dark: rgb(150, 0, 0);
 
+    --unknown_light: rgb(105, 105, 105);
+    --unknown_dark: rgb(37, 37, 37);
+
 }
 
 
 body {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    background-color: #353535;
+    background-color: rgb(34, 34, 34);
     color: white;
     display: flex;
     justify-content: center;
@@ -56,7 +60,7 @@ body {
 
 .table{
     animation: fade 1s ease-in-out;
-    gap: var(--elementsize);
+    gap: var(--tablegap);
 }
 
 .flex-row {
@@ -81,11 +85,16 @@ body {
     align-items: end;
 }
 
+.self-end{
+    align-self: end;
+}
+
 .up{
-    gap: var(--elementsize);
+    gap: var(--tablegap);
 }
 
 .element {
+    user-select: none;
     padding: var(--elementpadding);
     width: calc((var(--elementsize) - var(--elementpadding)));
     height: calc((var(--elementsize) - var(--elementpadding)));
@@ -93,7 +102,7 @@ body {
     font-size: var(--elementfontsize);
     border-radius: 5px;
     justify-content: space-around;
-    box-shadow: 5px 5px 10px rgb(27, 27, 27);
+    box-shadow: 5px 5px 10px rgb(20, 20, 20);
     transition: transform 0.1s ease;
 }
 
@@ -106,7 +115,7 @@ body {
 
 .element>.element_info {
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .element>.symbol {
@@ -118,7 +127,11 @@ body {
 }
 
 .element:hover {
-    transform: scale(1.3);
+    transform: scale(1.8);
+}
+
+.unknown{
+    background: linear-gradient(var(--unknown_light), var(--unknown_dark))
 }
 
 .polyatomic_nonmetal {
