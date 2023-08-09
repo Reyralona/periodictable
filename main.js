@@ -49,7 +49,7 @@ function createElementDiv(element, target) {
         <div>${atomicnumber}</div>
         <div>${atomicmass}u</div>
     </div>
-    <div class="symbol">${symbol}</div>
+    <div class="symbol" translate="no">${symbol}</div>
     <div>${name}</div>
     </div>
     `
@@ -70,7 +70,6 @@ function removeCard() {
 }
 
 function getElementInfo(elementObj) {
-    
     // if theres already a card
     removeCard()
 
