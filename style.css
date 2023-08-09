@@ -6,12 +6,13 @@
 :root {
 
     /* Layout */
-    --elementsize: 50px;
+    --elementsize: 80px;
     --elementpadding: 8px;
-    --elementfont: monospace;
-    --elementfontsize: 8px;
-    --elementgap: 2px;
-    --tablegap: 20px;
+    --elementfont: Cambria;
+    --elementfontsize: 12px;
+    --elementgap: 4px;
+    --tablegap: 40px;
+    --scaleFactor: 2;
 
 
     /* Colors */
@@ -21,8 +22,8 @@
     --noble_gas_light: rgb(167, 86, 86);
     --noble_gas_dark: rgb(86, 0, 0);
 
-    --alkali_metal_light: rgb(111, 194, 113);
-    --alkali_metal_dark: rgb(2, 102, 0);
+    --alkali_metal_light: rgb(88, 145, 77);
+    --alkali_metal_dark: rgb(1, 53, 0);
 
     --transition_metal_light: rgb(186, 108, 210);
     --transition_metal_dark: rgb(79, 0, 103);
@@ -55,10 +56,10 @@ body {
     color: white;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
-.table{
+.table {
     animation: fade 1s ease-in-out;
     gap: var(--tablegap);
 }
@@ -78,18 +79,19 @@ body {
     align-items: center;
 }
 
-.flex-end{
+.flex-end {
     justify-content: end;
 }
-.align-end{
+
+.align-end {
     align-items: end;
 }
 
-.self-end{
+.self-end {
     align-self: end;
 }
 
-.up{
+.up {
     gap: var(--tablegap);
 }
 
@@ -106,10 +108,16 @@ body {
     transition: transform 0.1s ease;
 }
 
-.elementgroup{
-    gap: var(--elementgap);
+.element:hover {
+    cursor: pointer;
 }
-.elementrow{
+
+.elementgroup {
+    gap: var(--elementgap);
+    transition: transform 0.1s ease;
+}
+
+.elementrow {
     gap: var(--elementgap);
 }
 
@@ -127,10 +135,10 @@ body {
 }
 
 .element:hover {
-    transform: scale(1.8);
+    transform: scale(var(--scaleFactor));
 }
 
-.unknown{
+.unknown {
     background: linear-gradient(var(--unknown_light), var(--unknown_dark))
 }
 
@@ -174,10 +182,11 @@ body {
     background: linear-gradient(var(--post-transition_metal_light), var(--post-transition_metal_dark));
 }
 
-@keyframes fade{
-    from { 
+@keyframes fade {
+    from {
         opacity: 0%;
     }
+
     to {
         opacity: 100%;
     }
