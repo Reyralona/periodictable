@@ -1,55 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+}
 
 :root {
 
     /* Layout */
-    --elementsize: 80px;
-    --elementpadding: 8px;
+    --elementsize: 4vw;
+    --elementpadding: 5px;
     --elementfont: consolas;
-    --elementfontsize: 11.5px;
-    --elementgap: 5px;
-    --tablegap: 40px;
+    --elementfontsize: 0.55vw;
+    --elementgap: 0.2vw;
+    --tablegap: 3vw;
     --scaleFactor: 2;
 
     /* Card Layout */
-    --cardwidth: 500px;
-    --cardheight: 500px;
-    --cardpadding: 15px;
-    --cardfontsize: 18px;
-    --cardiconsize: 15px;
+    --cardwidth: 50vw;
+    /* --cardheight: 20vw; */
+    --cardpadding: 5px;
+    --cardfontsize: 80%;
+    --cardiconsize: 1vw;
 
     /* Colors */
-    --reactive_nonmetal_light: rgb(125, 167, 216);
-    --reactive_nonmetal_dark: rgb(2, 55, 116);
 
-    --noble_gas_light: rgb(167, 86, 86);
-    --noble_gas_dark: rgb(86, 0, 0);
-
-    --alkali_metal_light: rgb(88, 145, 77);
-    --alkali_metal_dark: rgb(1, 53, 0);
-
-    --transition_metal_light: rgb(186, 108, 210);
-    --transition_metal_dark: rgb(79, 0, 103);
-
-    --lanthanide_light: rgb(77, 94, 255);
-    --lanthanide_dark: rgb(0, 0, 210);
-
-    --actinide_light: rgb(108, 69, 29);
-    --actinide_dark: rgb(63, 31, 0);
-
-    --metalloid_light: rgb(228, 191, 118);
-    --metalloid_dark: rgb(95, 66, 2);
-
-    --post-transition_metal_light: rgb(92, 170, 135);
-    --post-transition_metal_dark: rgb(0, 90, 49);
-
-    --alkaline_earth_metal_light: rgb(251, 102, 102);
-    --alkaline_earth_metal_dark: rgb(150, 0, 0);
-
-    --unknown_light: rgb(105, 105, 105);
-    --unknown_dark: rgb(37, 37, 37);
+    --reactive_nonmetal_color: rgb(35, 122, 204);
+    --polyatomic_nonmetal_color: var(--reactive_nonmetal_color);
+    --diatomic_nonmetal_color: var(--reactive_nonmetal_color);
+    --noble_gas_color: rgb(214, 44, 44);
+    --alkali_metal_color: rgb(58, 141, 58);
+    --transition_metal_color: rgb(159, 82, 223);
+    --lanthanide_color: rgb(13, 59, 209);
+    --actinide_color: rgb(128, 69, 30);
+    --metalloid_color: rgb(197, 125, 30);
+    --post_transition_metal_color: rgb(50, 145, 102);
+    --alkaline_earth_metal_color: rgb(192, 72, 57);
+    --unknown_color: rgb(63, 63, 63);
 
 }
 
+a {
+    color: white;
+}
+
+a:hover {
+    color: rgb(78, 78, 78);
+}
 
 body {
     width: 100vw;
@@ -59,7 +54,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: none;
 }
 
 table,
@@ -77,30 +72,29 @@ th {
 
 td,
 th {
-    padding: 10px;
+    padding: 1vw;
 }
 
 .table {
-    animation: fade 1s ease-in-out;
     gap: var(--tablegap);
     position: relative;
 }
 
 .x-icon {
-    align-self: end;
-    width: var(--cardiconsize);
-    height: var(--cardiconsize);
+    text-align: end;
 }
 
 .x-icon:hover {
     cursor: pointer;
+    color: rgb(78, 78, 78);
 }
 
 .card {
     font-family: var(--elementfont);
-    width: calc(var(--cardwidth) - var(--cardpadding));
+    width: fit-content;
+    max-width: var(--cardwidth);
+    /* max-width: 500px; */
     height: fit-content;
-    /* min-height: calc(var(--cardheight) - var(--cardpadding)); */
     padding: var(--cardpadding);
     position: absolute;
     left: 0;
@@ -110,15 +104,15 @@ th {
     margin: auto;
     font-size: var(--cardfontsize);
     border-radius: 10px;
-    gap: 10px;
+    gap: 5px;
 }
 
 .card>div {
-    gap: 20px;
+    gap: 10px;
 }
 
 .grow {
-    animation: grow 0.5s ease forwards;
+    animation: grow 0.3s ease forwards;
 }
 
 .unclickable {
@@ -126,7 +120,7 @@ th {
 }
 
 .shrink {
-    animation: shrink 0.5s ease forwards;
+    animation: shrink 0.3s ease forwards;
 }
 
 .flex-row {
@@ -167,7 +161,7 @@ th {
     height: calc((var(--elementsize) - var(--elementpadding)));
     font-family: var(--elementfont);
     font-size: var(--elementfontsize);
-    border-radius: 5px;
+    border-radius: 5%;
     justify-content: space-around;
     box-shadow: 5px 5px 10px rgb(20, 20, 20);
     transition: transform 0.1s ease;
@@ -203,60 +197,6 @@ th {
     transform: scale(var(--scaleFactor));
 }
 
-.unknown {
-    background: linear-gradient(var(--unknown_light), var(--unknown_dark))
-}
-
-.polyatomic_nonmetal {
-    background: linear-gradient(var(--reactive_nonmetal_light), var(--reactive_nonmetal_dark));
-}
-
-.alkaline_earth_metal {
-    background: linear-gradient(var(--alkaline_earth_metal_light), var(--alkaline_earth_metal_dark));
-}
-
-.diatomic_nonmetal {
-    background: linear-gradient(var(--reactive_nonmetal_light), var(--reactive_nonmetal_dark));
-}
-
-.noble_gas {
-    background: linear-gradient(var(--noble_gas_light), var(--noble_gas_dark))
-}
-
-.alkali_metal {
-    background: linear-gradient(var(--alkali_metal_light), var(--alkali_metal_dark));
-}
-
-.transition_metal {
-    background: linear-gradient(var(--transition_metal_light), var(--transition_metal_dark));
-}
-
-.lanthanide {
-    background: linear-gradient(var(--lanthanide_light), var(--lanthanide_dark));
-}
-
-.actinide {
-    background: linear-gradient(var(--actinide_light), var(--actinide_dark))
-}
-
-.metalloid {
-    background: linear-gradient(var(--metalloid_light), var(--metalloid_dark))
-}
-
-.post-transition_metal {
-    background: linear-gradient(var(--post-transition_metal_light), var(--post-transition_metal_dark));
-}
-
-@keyframes fade {
-    from {
-        opacity: 0%;
-    }
-
-    to {
-        opacity: 100%;
-    }
-}
-
 @keyframes grow {
     from {
         transform: scale(0);
@@ -275,63 +215,17 @@ th {
     }
 }
 
+@media (max-height: 500px) and (orientation: landscape) {
+    .card{
+        width: fit-content;
+        font-size: 1.2vw;
+        padding: 5px;
+    }
+    .card > div {
+        flex-direction: row;
+    }
 
-@media only screen and (min-width: 300px) {
-    body {transform: scale(15%);}
+    .table tr, th, td{
+        padding: 5px;
+    }
 }
-@media only screen and (min-width: 400px) {
-    body {transform: scale(20%);}
-}
-@media only screen and (min-width: 500px) {
-    body {transform: scale(25%);}
-}
-@media only screen and (min-width: 600px) {
-    body {transform: scale(30%);}
-}
-@media only screen and (min-width: 700px) {
-    body {transform: scale(35%);}
-}
-@media only screen and (min-width: 800px) {
-    body {transform: scale(40%);}
-}
-@media only screen and (min-width: 900px) {
-    body {transform: scale(45%);}
-}
-@media only screen and (min-width: 1000px) {
-    body {transform: scale(50%);}
-}
-@media only screen and (min-width: 1100px) {
-    body {transform: scale(55%);}
-}
-@media only screen and (min-width: 1200px) {
-    body {transform: scale(60%);}
-}
-@media only screen and (min-width: 1300px) {
-    body {transform: scale(65%);}
-}
-@media only screen and (min-width: 1400px) {
-    body {transform: scale(70%);}
-}
-@media only screen and (min-width: 1200px) {
-    body {transform: scale(75%);}
-}
-@media only screen and (min-width: 1300px) {
-    body {transform: scale(80%);}
-}
-@media only screen and (min-width: 1500px) {
-    body {transform: scale(85%);}
-}
-@media only screen and (min-width: 1600px) {
-    body {transform: scale(90%);}
-}
-@media only screen and (min-width: 1700px) {
-    body {transform: scale(95%);}
-}
-@media only screen and (min-width: 1800px) {
-    body {transform: scale(100%);}
-}
-@media only screen and (min-width: 1900px) {
-    body {transform: scale(100%);}
-}
-
-

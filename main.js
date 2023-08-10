@@ -1,6 +1,14 @@
 
-function addUnderscores(string) {
-    return string.replace(/ /g, "_")
+function cardIsShowing(){
+    return document.querySelector('.card') !== null
+}
+
+function clickedOn(el, e){
+    return document.querySelector(`${el}`).contains(e.target)
+}
+
+function getCssColor(cssVar){
+    return getComputedStyle(document.documentElement).getPropertyValue(cssVar);
 }
 
 function capitalize(string) {
@@ -9,11 +17,24 @@ function capitalize(string) {
     }
 }
 
+function handleMissingNumber(number, suffix){
+    if (number === null){
+        return "Unknown"
+    } else {
+        return number + " " + suffix
+    }
+}
+
 function handleMissing(string) {
-    if (String(string) === "null" || String(string) === "undefined" || String(string).search("unknown") !== -1) {
+    string = String(string)
+    if (string === "null" || string === "undefined" || string.search("unknown") !== -1) {
         return "unknown"
     }
     return string
+}
+
+function switchToUnderscores(string){
+    return string.replace(/['`~!@#$%^&*()|+-=?;:' ",.<>\{\}\[\]\\\/]/gi, "_")
 }
 
 function findElementByName(array, key, value) {
@@ -22,21 +43,22 @@ function findElementByName(array, key, value) {
     });
 };
 
+function getColorsFromCategory(category){
+    let colorLight = tinycolor(eval(`${switchToUnderscores(category)}_color`)).lighten(5).toString()
+    let colorDark = tinycolor(eval(`${switchToUnderscores(category)}_color`)).darken(15).toString()
+
+    return {light: colorLight, dark: colorDark}
+}
+
 function createElementDiv(element, target) {
 
-    let elObj = findElementByName(data.elements, 'name', element)
-    let ele = elObj[0]
+    let ele = findElementByName(data.elements, 'name', element)[0]
     let atomicnumber = ele.number
     let atomicmass = ele.atomic_mass
     let symbol = ele.symbol
     let name = ele.name
-    let category = addUnderscores(ele.category)
-
-
-    //if category is unknown
-    if (category.search("unknown") !== -1) {
-        category = "unknown"
-    }
+    let category = handleMissing(switchToUnderscores(ele.category))
+    let colors = getColorsFromCategory(category)
 
     //if atomic mass is too big
     if (String(atomicmass).length >= 7) {
@@ -44,7 +66,7 @@ function createElementDiv(element, target) {
     }
 
     let eleDiv = `
-    <div class="${category} element flex-col flex-center">
+    <div class="${category} element flex-col flex-center" style="background: linear-gradient(${colors.light}, ${colors.dark})">
     <div class="flex-row element_info">
         <div>${atomicnumber}</div>
         <div>${atomicmass}u</div>
@@ -70,18 +92,22 @@ function removeCard() {
 }
 
 function getElementInfo(elementObj) {
+
     // if theres already a card
     removeCard()
 
     let elementInfo = findElementByName(data.elements, 'name', elementObj.id)[0]
+    let colors = getColorsFromCategory(handleMissing(switchToUnderscores(elementInfo.category)))
     let cardDiv = `
-    <div class="card ${addUnderscores(handleMissing(elementInfo.category))} grow flex-col">
-        <img class="x-icon" type="button" onclick="removeCard()" src="x-icon.jpg"></nav>
+    <div class="card ${switchToUnderscores(handleMissing(elementInfo.category))} grow flex-col" style="background: linear-gradient(${colors.light}, ${colors.dark})">
+        <nav>
+            <div class="x-icon" type="button" onclick="removeCard()">X</div>
+        </nav>
         <div class="flex-col">
             <table>
                 <tr>
                     <th>Name</th>
-                    <td>${elementInfo.name}</td>
+                    <td><a target="_blank" href="${elementInfo.source}">${elementInfo.name}</a></td>
                 </tr>
                 <tr>
                     <th>Atomic Number</th>
@@ -97,15 +123,15 @@ function getElementInfo(elementObj) {
                 </tr>
                 <tr>
                     <th>Appearance</th>
-                    <td>${capitalize(elementInfo.appearance)}</td>
+                    <td>${capitalize(handleMissing(elementInfo.appearance))}</td>
                 </tr>
                 <tr>
                     <th>Atomic Mass</th>
-                    <td>${handleMissing(elementInfo.atomic_mass)} u</td>
+                    <td>${handleMissingNumber(elementInfo.atomic_mass, 'u')}</td>
                 </tr>
                 <tr>
                     <th>Boiling point</th>
-                    <td>${handleMissing(elementInfo.boil)} K</td>
+                    <td>${handleMissingNumber(elementInfo.boil, 'K')}</td>
                 </tr>
                 <tr>
                     <th>Category</th>
@@ -113,11 +139,15 @@ function getElementInfo(elementObj) {
                 </tr>
                 <tr>
                     <th>Density</th>
-                    <td>${handleMissing(elementInfo.density)} kg/m³</td>
+                    <td>${handleMissingNumber(elementInfo.density, 'kg/m³')}</td>
                 </tr>
                 <tr>
                     <th>Melting point</th>
-                    <td>${handleMissing(elementInfo.melt)} K</td>
+                    <td>${handleMissingNumber(elementInfo.melt, 'K')}</td>
+                </tr>
+                <tr>
+                    <th>Electron configuration</th>
+                    <td>${handleMissing(elementInfo.electron_configuration)}</td>
                 </tr>
             </table>
             <table>
@@ -138,16 +168,24 @@ function getElementInfo(elementObj) {
     }, 1000)
 }
 
-function cardIsShowing(){
-    return document.querySelector('.card') !== null
-}
 
-function clickedOn(el, e){
-    return document.querySelector(`${el}`).contains(e.target)
-}
 
 periodicTable = document.querySelector(".table")
 body = document.getElementsByTagName('body')[0]
+
+let reactive_nonmetal_color = getCssColor('--reactive_nonmetal_color')
+let polyatomic_nonmetal_color = getCssColor('--reactive_nonmetal_color')
+let diatomic_nonmetal_color = getCssColor('--reactive_nonmetal_color')
+let noble_gas_color = getCssColor('--noble_gas_color')
+let alkali_metal_color = getCssColor('--alkali_metal_color')
+let transition_metal_color = getCssColor('--transition_metal_color')
+let lanthanide_color = getCssColor('--lanthanide_color')
+let actinide_color = getCssColor('--actinide_color')
+let metalloid_color = getCssColor('--metalloid_color')
+let post_transition_metal_color = getCssColor('--post_transition_metal_color')
+let alkaline_earth_metal_color = getCssColor('--alkaline_earth_metal_color')
+let unknown_color = getCssColor('--unknown_color')
+
 
 // gets table info
 
