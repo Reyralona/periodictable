@@ -135,7 +135,7 @@ function getElementInfo(elementObj) {
 
     setTimeout(() => {
         periodicTable.classList.remove("unclickable")
-    }, 500)
+    }, 1000)
 }
 
 function cardIsShowing(){
