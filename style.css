@@ -3,6 +3,8 @@
     margin: 0;
 }
 
+
+
 :root {
 
     /* Layout */
@@ -63,9 +65,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: hidden;
 }
 
-table, th, td{
+table,
+th,
+td {
     border: 1px solid white;
     border-collapse: collapse;
 
@@ -76,7 +81,8 @@ th {
     text-align: left;
 }
 
-td, th {
+td,
+th {
     padding: 10px;
 }
 
@@ -86,16 +92,17 @@ td, th {
     position: relative;
 }
 
-.x-icon{
+.x-icon {
     align-self: end;
     width: var(--cardiconsize);
     height: var(--cardiconsize);
 }
-.x-icon:hover{
+
+.x-icon:hover {
     cursor: pointer;
 }
 
-.card{
+.card {
     font-family: var(--elementfont);
     width: calc(var(--cardwidth) - var(--cardpadding));
     height: fit-content;
@@ -112,19 +119,19 @@ td, th {
     gap: 10px;
 }
 
-.card > div{
+.card>div {
     gap: 20px;
 }
 
-.grow{
+.grow {
     animation: grow 0.5s ease forwards;
 }
 
-.unclickable{
+.unclickable {
     pointer-events: none;
 }
 
-.shrink{
+.shrink {
     animation: shrink 0.5s ease forwards;
 }
 
@@ -260,16 +267,80 @@ td, th {
     from {
         transform: scale(0);
     }
+
     to {
         transform: scale(1);
     }
 }
 
 @keyframes shrink {
-    from {
+    from {}
 
-    }
     to {
         transform: scale(0);
     }
 }
+
+@media only screen and (max-width: 500px) {
+    body {
+        transform: scale(22%);
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 400px) {
+    body {transform: scale(25%);}
+}
+@media only screen and (min-width: 500px) {
+    body {transform: scale(30%);}
+}
+@media only screen and (min-width: 600px) {
+    body {transform: scale(35%);}
+}
+@media only screen and (min-width: 700px) {
+    body {transform: scale(40%);}
+}
+@media only screen and (min-width: 800px) {
+    body {transform: scale(45%);}
+}
+@media only screen and (min-width: 900px) {
+    body {transform: scale(50%);}
+}
+@media only screen and (min-width: 1000px) {
+    body {transform: scale(55%);}
+}
+@media only screen and (min-width: 1100px) {
+    body {transform: scale(60%);}
+}
+@media only screen and (min-width: 1200px) {
+    body {transform: scale(65%);}
+}
+@media only screen and (min-width: 1300px) {
+    body {transform: scale(70%);}
+}
+@media only screen and (min-width: 1400px) {
+    body {transform: scale(75%);}
+}
+@media only screen and (min-width: 1200px) {
+    body {transform: scale(65%);}
+}
+@media only screen and (min-width: 1300px) {
+    body {transform: scale(70%);}
+}
+@media only screen and (min-width: 1500px) {
+    body {transform: scale(75%);}
+}
+@media only screen and (min-width: 1600px) {
+    body {transform: scale(80%);}
+}
+@media only screen and (min-width: 1700px) {
+    body {transform: scale(85%);}
+}
+@media only screen and (min-width: 1800px) {
+    body {transform: scale(90%);}
+}
+@media only screen and (min-width: 1900px) {
+    body {transform: scale(100%);}
+}
+
+
