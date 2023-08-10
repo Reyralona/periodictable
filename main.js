@@ -105,7 +105,7 @@ function getElementInfo(elementObj) {
                 </tr>
                 <tr>
                     <th>Boiling point</th>
-                    <td>${handleMissing(elementInfo.boil)}</td>
+                    <td>${handleMissing(elementInfo.boil)}K</td>
                 </tr>
                 <tr>
                     <th>Category</th>
@@ -113,11 +113,11 @@ function getElementInfo(elementObj) {
                 </tr>
                 <tr>
                     <th>Density</th>
-                    <td>${handleMissing(elementInfo.density)}</td>
+                    <td>${handleMissing(elementInfo.density)} kg/m³</td>
                 </tr>
                 <tr>
                     <th>Melting point</th>
-                    <td>${handleMissing(elementInfo.melt)}</td>
+                    <td>${handleMissing(elementInfo.melt)}K</td>
                 </tr>
             </table>
             <table>
