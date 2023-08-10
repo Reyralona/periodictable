@@ -281,63 +281,60 @@ th {
     }
 }
 
-@media only screen and (max-width: 500px) {
-    body {
-        transform: scale(22%);
-    }
-}
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 300px) {
+    body {transform: scale(15%);}
+}
 @media only screen and (min-width: 400px) {
-    body {transform: scale(25%);}
+    body {transform: scale(20%);}
 }
 @media only screen and (min-width: 500px) {
-    body {transform: scale(30%);}
+    body {transform: scale(25%);}
 }
 @media only screen and (min-width: 600px) {
-    body {transform: scale(35%);}
+    body {transform: scale(30%);}
 }
 @media only screen and (min-width: 700px) {
-    body {transform: scale(40%);}
+    body {transform: scale(35%);}
 }
 @media only screen and (min-width: 800px) {
-    body {transform: scale(45%);}
+    body {transform: scale(40%);}
 }
 @media only screen and (min-width: 900px) {
-    body {transform: scale(50%);}
+    body {transform: scale(45%);}
 }
 @media only screen and (min-width: 1000px) {
-    body {transform: scale(55%);}
+    body {transform: scale(50%);}
 }
 @media only screen and (min-width: 1100px) {
+    body {transform: scale(55%);}
+}
+@media only screen and (min-width: 1200px) {
     body {transform: scale(60%);}
 }
-@media only screen and (min-width: 1200px) {
-    body {transform: scale(65%);}
-}
 @media only screen and (min-width: 1300px) {
-    body {transform: scale(70%);}
+    body {transform: scale(65%);}
 }
 @media only screen and (min-width: 1400px) {
-    body {transform: scale(75%);}
-}
-@media only screen and (min-width: 1200px) {
-    body {transform: scale(65%);}
-}
-@media only screen and (min-width: 1300px) {
     body {transform: scale(70%);}
 }
-@media only screen and (min-width: 1500px) {
+@media only screen and (min-width: 1200px) {
     body {transform: scale(75%);}
 }
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1300px) {
     body {transform: scale(80%);}
 }
-@media only screen and (min-width: 1700px) {
+@media only screen and (min-width: 1500px) {
     body {transform: scale(85%);}
 }
-@media only screen and (min-width: 1800px) {
+@media only screen and (min-width: 1600px) {
     body {transform: scale(90%);}
+}
+@media only screen and (min-width: 1700px) {
+    body {transform: scale(95%);}
+}
+@media only screen and (min-width: 1800px) {
+    body {transform: scale(100%);}
 }
 @media only screen and (min-width: 1900px) {
     body {transform: scale(100%);}
