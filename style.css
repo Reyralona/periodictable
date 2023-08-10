@@ -6,20 +6,20 @@
 :root {
 
     /* Layout */
-    --elementsize: 4vw;
-    --elementpadding: 5px;
+    --elementsize: 80px;
+    --elementpadding: 8px;
     --elementfont: consolas;
-    --elementfontsize: 0.55vw;
-    --elementgap: 0.2vw;
-    --tablegap: 3vw;
+    --elementfontsize: 11.5px;
+    --elementgap: 5px;
+    --tablegap: 40px;
     --scaleFactor: 2;
 
     /* Card Layout */
-    --cardwidth: 40vw;
+    --cardwidth: 550px;
     /* --cardheight: 20vw; */
     --cardpadding: 10px;
-    --cardfontsize: 1.5vw;
-    --cardiconsize: 1vw;
+    --cardfontsize: 20px;
+    --cardiconsize: 15px;
 
     /* Colors */
 
@@ -54,7 +54,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: none;
+    overflow: hidden;
 }
 
 table,
@@ -104,10 +104,6 @@ th {
     font-size: var(--cardfontsize);
     border-radius: 10px;
     gap: 10px;
-}
-
-.summary{
-    width: 80%;
 }
 
 .card>div {
@@ -164,7 +160,7 @@ th {
     height: calc((var(--elementsize) - var(--elementpadding)));
     font-family: var(--elementfont);
     font-size: var(--elementfontsize);
-    border-radius: 5%;
+    border-radius: 10px;
     justify-content: space-around;
     box-shadow: 5px 5px 10px rgb(20, 20, 20);
     transition: transform 0.1s ease;
@@ -215,33 +211,5 @@ th {
 
     to {
         transform: scale(0);
-    }
-}
-
-@media (max-height: 500px) and (orientation: landscape) {
-    .card{
-        width: 40vw;
-        font-size: 1.1vw;
-        padding: 5px;
-    }
-    .card > div {
-        flex-direction: row;
-    }
-
-    .table tr, th, td{
-        padding: 5px;
-    }
-}
-
-@media (max-width: 786px) and (orientation: portrait) {
-    .card{
-        width: 80vw;
-        font-size: 3.5vw;
-        padding: 5px;
-    }
-
-
-    .table tr, th, td{
-        padding: 5px;
     }
 }
